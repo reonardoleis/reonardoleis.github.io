@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script>
+ 
+<script>
   var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
   function doCORSRequest(options, printResult) {
     var x = new XMLHttpRequest();
@@ -22,22 +23,23 @@
   // Bind event
  
 
- function a(){
-    
-   
-    
-      
+ function getRepositories(){
       doCORSRequest({
         method: this.id === 'post' ? 'POST' : 'GET',
-        url: 'google.com',
+        url: 'http://banhartsabonetes.com.br/git/get-repo.php',
         data: ''
       }, function printResult(result) {
-        console.log(result);
+        		console.log(result);
       });
     
    }
-   a();
+   
+   getRepositories();
+
+
+
 </script>
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>GitHub - Reonardoleis</title>
