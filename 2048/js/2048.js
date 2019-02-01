@@ -24,6 +24,26 @@ while(placed!=2){
 
 
 
+function restart(){
+	score = 0;
+	document.getElementById('score').innerHTML = 'Score: '+score;
+	board = 
+		[[0, 0, 0, 0],
+ 		[0, 0, 0, 0],
+ 		[0, 0, 0, 0],
+ 		[0, 0, 0, 0]];
+ 		placed = 0;
+while(placed!=2){
+	randX = Math.floor(Math.random() * 4);
+	randY = Math.floor(Math.random() * 4);
+	if(board[randX][randY]==0){
+		board[randX][randY] = new piece(2);
+		board[randX][randY].position.x = randY;
+		board[randX][randY].position.y = randX;
+		placed++;
+	}
+}
+}
 
 
 function init(){
@@ -77,7 +97,7 @@ function drawSquares(){
 				else if(board[x][y].value>=128 && board[x][y].value<1024){
 					ctx.fillText(board[x][y].value, board[x][y].position.x * 100 + 20, board[x][y].position.y * 100 + 60);
 				}else{
-
+					ctx.fillText(board[x][y].value, board[x][y].position.x * 100 + 10, board[x][y].position.y * 100 + 60);
 				}
 			}
 		}
@@ -85,6 +105,7 @@ function drawSquares(){
 }
 
 function piece(value){
+	this.canSum = true;
 	this.value = value;
 	this.position = {
 		x: 0,
@@ -94,7 +115,6 @@ function piece(value){
 
 function moveSquares(direction){
 	counter = 0;
-	canSum = true;
 	found = false;
 	if(direction=='up'){
 		for(var x = 0; x < board.length; x++){
@@ -107,16 +127,17 @@ function moveSquares(direction){
 							board[board[x-i][y].position.y][y] = board[x-i][y];
 							board[x-i][y] = 0;
 						}
-						else if(x-i-1>=0 && board[x-i-1][y].value==board[x-i][y].value && canSum == true){
+						else if(x-i-1>=0 && board[x-i-1][y].value==board[x-i][y].value && board[x-i-1][y].canSum == true){
 							board[x-i-1][y].value *= 2;
 							score+=board[x-i-1][y].value;
 							counter++;
 							board[x-i][y] = 0;
-							canSum = false;
+							board[x-i-1][y].canSum = false;
+							break;
 
 						}
 					}
-					canSum = true;
+
 				}
 			}
 		}
@@ -137,15 +158,16 @@ function moveSquares(direction){
 							board[board[x+i][y].position.y][y] = board[x+i][y];
 							board[x+i][y] = 0;
 						}
-						else if(x+i+1<=3 && board[x+i+1][y].value==board[x+i][y].value && canSum == true){
+						else if(x+i+1<=3 && board[x+i+1][y].value==board[x+i][y].value && board[x+i+1][y].canSum == true){
 							board[x+i+1][y].value *= 2;
 							score+=board[x+i+1][y].value;
 							counter++;
 							board[x+i][y] = 0;
-							canSum = false;
+							board[x+i+1][y].canSum = false;
+							break;
 						}
 					}
-					canSum = true;
+
 				}
 			}
 		}
@@ -162,15 +184,16 @@ function moveSquares(direction){
 							board[x][board[x][y-i].position.x] = board[x][y-i];
 							board[x][y-i] = 0;
 						}
-						else if(y-i-1>=0 && board[x][y-i-1].value==board[x][y-i].value && canSum == true){
+						else if(y-i-1>=0 && board[x][y-i-1].value==board[x][y-i].value && board[x][y-i-1].canSum == true){
 							board[x][y-i-1].value *= 2;
 							score+=board[x][y-i-1].value;
 							counter++;
 							board[x][y-i] = 0;
-							canSum = false;
+							board[x][y-i-1].canSum = false;
+							break;
 						}
 					}
-					canSum = true;
+
 				}
 			}
 		}
@@ -187,21 +210,28 @@ function moveSquares(direction){
 							board[x][board[x][y+i].position.x] = board[x][y+i];
 							board[x][y+i] = 0;
 						}
-						else if(y+i+1<=3 && board[x][y+i+1].value==board[x][y+i].value && canSum == true){
+						else if(y+i+1<=3 && board[x][y+i+1].value==board[x][y+i].value && board[x][y+i+1].canSum == true){
 							board[x][y+i+1].value *= 2;
 							score+=board[x][y+i+1].value;
 							counter++;
 							board[x][y+i] = 0;
-							canSum = false;
+							board[x][y+i+1].canSum = false;
+							break;
+
 						}
 					}
-					canSum = true;
+					
 				}
+
 			}
 		}
 		drawSquares();
 	}
-
+	for(var i = 0; i < board.length; i++){
+		for(var j = 0; j < board[0].length; j++){
+			board[i][j].canSum = true;
+		}
+	}
 	if(counter>0){
 		random_value = Math.floor(Math.random() * 2);
 		if(random_value==0){
@@ -289,8 +319,62 @@ function moveSquares(direction){
 
 
 	}
-	document.getElementById('score').innerHTML = 'Score: '+score;
 	
+	document.getElementById('score').innerHTML = 'Score: '+score;
+	verifyLoss();
+	
+}
+
+function verifyLoss(){
+	number_of_pieces = 0;
+	canJoin = false;
+	for(var x = 0; x < board.length; x++){
+		for(var y = 0; y < board[0].length; y++){
+			if(board[x][y]!=0){
+				number_of_pieces++;
+			}
+		}
+	}
+	if(number_of_pieces==16){
+		for(var x = 0; x < board.length; x++){
+			for(var y = 0; y < board[0].length; y++){
+				if(x-1>=0){
+					if(board[x][y].value==board[x-1][y].value){
+						canJoin = true;
+					}
+				}
+				if(x+1<=3){
+					if(board[x][y].value==board[x+1][y].value){
+						canJoin = true;
+					}
+				}
+				if(y-1>=0){
+					if(board[x][y].value==board[x][y-1].value){
+						canJoin = true;
+					}
+				}
+				if(y+1<=3){
+					if(board[x][y].value==board[x][y+1].value){
+						canJoin = true;
+					}
+				}
+			}
+		}
+		if(!canJoin){
+				document.getElementById('score').innerHTML = 'You lost! Final score: '+score+'<br>Press spacebar to restart';
+		}
+	}
+	
+
+}
+
+function baguncinha(){
+	for(var x = 0; x < board.length; x++){
+		for(var y = 0; y < board[0].length; y++){
+			
+			board[x][y].value=Math.floor(Math.random() * 666);
+		}
+	}
 }
 
 document.onkeydown = function(e){
@@ -309,5 +393,9 @@ document.onkeydown = function(e){
 	//esquerda
 	if(e.keyCode==39){
 		moveSquares('right');
+	}
+	if(e.keyCode==32){
+		restart();
+		drawSquares();
 	}
 }
