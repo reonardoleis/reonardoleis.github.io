@@ -2,15 +2,41 @@
 <html lang="en">
 <head>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript">
-	$.ajax({
-  url: "https://github.com/reonardoleis",
-  crossDomain: true,
-  cache: false,
-  success: function(html){
-    console.log(html);
+  <script>
+  var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+  function doCORSRequest(options, printResult) {
+    var x = new XMLHttpRequest();
+    x.open(options.method, cors_api_url + options.url);
+    x.onload = x.onerror = function() {
+      printResult(
+        options.method + ' ' + options.url + '\n' +
+        x.status + ' ' + x.statusText + '\n\n' +
+        (x.responseText || '')
+      );
+    };
+    if (/^POST/i.test(options.method)) {
+      x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    }
+    x.send(options.data);
   }
-});
+  // Bind event
+ 
+
+ function a(){
+    
+   
+    
+      
+      doCORSRequest({
+        method: this.id === 'post' ? 'POST' : 'GET',
+        url: 'google.com',
+        data: ''
+      }, function printResult(result) {
+        console.log(result);
+      });
+    
+   }
+   a();
 </script>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
