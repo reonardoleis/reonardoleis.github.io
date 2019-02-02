@@ -1,107 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
- 
-<script>
-  
-
-  var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
-  function doCORSRequest(options, printResult) {
-    var x = new XMLHttpRequest();
-    x.open(options.method, cors_api_url + options.url);
-    x.onload = x.onerror = function() {
-      printResult(
-        options.method + ' ' + options.url + '\n' +
-        x.status + ' ' + x.statusText + '\n\n' +
-        (x.responseText || '')
-      );
-    };
-    if (/^POST/i.test(options.method)) {
-      x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    }
-    x.send(options.data);
-  }
- 
-
-</script>
-
-  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1.0'/>
-  <title>GitHub - Reonardoleis</title>
-
-  <!-- CSS  -->
-  <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
-  <link href='css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection'/>
-  <link href='css/style.css' type='text/css' rel='stylesheet' media='screen,projection'/>
-</head>
-<body>
-  <nav class='light-blue lighten-1' role='navigation'>
-    <div class='nav-wrapper container'><a id='logo-container' href='#' class='brand-logo'>reonardoleis</a>
-      <ul class='right hide-on-med-and-down'>
-        <li><a href='#'></a></li>
-      </ul>
-
-      <ul id='nav-mobile' class='sidenav'>
-        <li><a href='#'></a></li>
-      </ul>
-      <a href='#' data-target='nav-mobile' class='sidenav-trigger'><i class='material-icons'>menu</i></a>
-    </div>
-  </nav>
-  <div class='section no-pad-bot' id='index-banner'>
-    <div class='container'>
-      <br><br>
-      <h1 class='header center orange-text'>reonardoleis.github.io</h1>
-      <div class='row center'>
-        <h5 class='header col s12 light'>Project showcase</h5>
+   <head>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="js/get-repo-cors-everywhere.js"></script>
+      <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+      <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1.0'/>
+      <title>GitHub - Reonardoleis</title>
+      <!-- CSS  -->
+      <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+      <link href='css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection'/>
+      <link href='css/style.css' type='text/css' rel='stylesheet' media='screen,projection'/>
+   </head>
+   <body>
+      <nav class='light-blue lighten-1' role='navigation'>
+         <div class='nav-wrapper container'>
+            <a id='logo-container' href='#' class='brand-logo'>reonardoleis.github.io</a>
+            <ul class='right hide-on-med-and-down'>
+               <li><a href='#'></a></li>
+            </ul>
+            <ul id='nav-mobile' class='sidenav'>
+               <li><a href='#'></a></li>
+            </ul>
+            <a href='#' data-target='nav-mobile' class='sidenav-trigger'><i class='material-icons'>menu</i></a>
+         </div>
+      </nav>
+      <div class='section no-pad-bot' id='index-banner'>
+         <div class='container'>
+            <br><br>
+            <h1 class='header center orange-text'>Leonardo Reis</h1>
+            <div class='row center'>
+               <h5 class='header col s12 light'>Projects</h5>
+            </div>
+         </div>
       </div>
-      
-      <br><br>
-
-    </div>
-  </div>
-
-  
-
- 
-
-  <div style="text-align: center">
-  <img id="loading" src="img/loading.gif" width="100">
-</div>
-  <!--  Scripts-->
-  <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
-  <script src='js/materialize.js'></script>
-  <script src='js/init.js'></script>
-  <script type="text/javascript">
-      function getRepositories(){
-      doCORSRequest({
-        method: this.id === 'post' ? 'POST' : 'GET',
-        url: 'http://reonardo.000webhostapp.com/git/get-repo.php',
-        data: ''
-      }, function printResult(result) {
-            result = result.replace('GET', '');
-            result = result.replace('200', '');
-            result = result.replace('OK', '');
-            result = result.replace('http://reonardo.000webhostapp.com/git/get-repo.php', '');
-            result = result.trim();
-            repositories = result.split('|');
-            $("body").append("<table>");
-            fim = 1;
-            document.getElementById('loading').style.display = 'none';
-            for(var i = 0; i<repositories.length-1; i++){
-             
-               console.log(repositories[i].split('- ')[0]);
-               if((repositories[i].split('- ')[0])!="reonardoleis.github.io "){
-               $("table").append('<tr><td><div class="col s12 m4"><div class="icon-block"><h5 class="center">'+repositories[i].split('- ')[0]+'</h5><p class="light center">'+repositories[i].split('- ')[1]+'</p></div><p class="center"><a href="https://github.com/reonardoleis/'+repositories[i].split('- ')[0]+'">View repository</a></p></div></td></tr>');
-              }
-             
-            }
-            $("body").append("</table>");
-      });
-    
-   }
-  getRepositories();
-  </script>
-
-  </body>
+      <div style="text-align: center">
+         <img id="loading" src="img/loading.gif" width="100">
+      </div>
+      <!--  Scripts-->
+      <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+      <script src='js/materialize.js'></script>
+      <script src='js/init.js'></script>
+      <script type="text/javascript">
+         getRepositories();
+      </script>
+   </body>
 </html>
