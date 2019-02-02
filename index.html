@@ -4,6 +4,8 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
  
 <script>
+  
+
   var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
   function doCORSRequest(options, printResult) {
     var x = new XMLHttpRequest();
@@ -20,105 +22,86 @@
     }
     x.send(options.data);
   }
-  // Bind event
  
 
- function getRepositories(){
+</script>
+
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1.0'/>
+  <title>GitHub - Reonardoleis</title>
+
+  <!-- CSS  -->
+  <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+  <link href='css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection'/>
+  <link href='css/style.css' type='text/css' rel='stylesheet' media='screen,projection'/>
+</head>
+<body>
+  <nav class='light-blue lighten-1' role='navigation'>
+    <div class='nav-wrapper container'><a id='logo-container' href='#' class='brand-logo'>reonardoleis</a>
+      <ul class='right hide-on-med-and-down'>
+        <li><a href='#'></a></li>
+      </ul>
+
+      <ul id='nav-mobile' class='sidenav'>
+        <li><a href='#'></a></li>
+      </ul>
+      <a href='#' data-target='nav-mobile' class='sidenav-trigger'><i class='material-icons'>menu</i></a>
+    </div>
+  </nav>
+  <div class='section no-pad-bot' id='index-banner'>
+    <div class='container'>
+      <br><br>
+      <h1 class='header center orange-text'>reonardoleis.github.io</h1>
+      <div class='row center'>
+        <h5 class='header col s12 light'>Project showcase</h5>
+      </div>
+      
+      <br><br>
+
+    </div>
+  </div>
+
+  
+
+ 
+
+  <div style="text-align: center">
+  <img id="loading" src="img/loading.gif" width="100">
+</div>
+  <!--  Scripts-->
+  <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
+  <script src='js/materialize.js'></script>
+  <script src='js/init.js'></script>
+  <script type="text/javascript">
+      function getRepositories(){
       doCORSRequest({
         method: this.id === 'post' ? 'POST' : 'GET',
         url: 'http://banhartsabonetes.com.br/git/get-repo.php',
         data: ''
       }, function printResult(result) {
-        		console.log(result);
+            result = result.replace('GET', '');
+            result = result.replace('200', '');
+            result = result.replace('OK', '');
+            result = result.replace('http://banhartsabonetes.com.br/git/get-repo.php', '');
+            result = result.trim();
+            repositories = result.split('|');
+            $("body").append("<table>");
+            fim = 1;
+            document.getElementById('loading').style.display = 'none';
+            for(var i = 0; i<repositories.length-1; i++){
+             
+               console.log(repositories[i].split('- ')[0]);
+               if((repositories[i].split('- ')[0])!="reonardoleis.github.io "){
+               $("table").append('<tr><td><div class="col s12 m4"><div class="icon-block"><h5 class="center">'+repositories[i].split('- ')[0]+'</h5><p class="light center">'+repositories[i].split('- ')[1]+'</p></div><p class="center"><a href="https://github.com/reonardoleis/'+repositories[i].split('- ')[0]+'">View repository</a></p></div></td></tr>');
+              }
+             
+            }
+            $("body").append("</table>");
       });
     
    }
-   
-   getRepositories();
-
-
-
-</script>
-
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>GitHub - Reonardoleis</title>
-
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">reonardoleis</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#"></a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#"></a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">reonardoleis.github.io</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Project showcase</h5>
-      </div>
-      
-      <br><br>
-
-    </div>
-  </div>
-
-  <div class="container" id='projects'>
-    <div class="section">
-
-      <!--   Icon Section   -->
-      
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h5 class="center">2048-js</h5>
-            <p class="light">A simple 2048 game clone written in JavaScript and HTML</p>
-          </div>
-          <p class="center"><a href="https://github.com/reonardoleis/2048-js">View repository | </a><a href="/2048/2048.html">Play</a></p>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h5 class="center">discord-snekbot</h5>
-
-            <p class="light">Discord bot written in JavaScript that runs on node.js</p>
-          </div>
-          <p class="center"><a href="https://github.com/reonardoleis/discord-snekbot">View repository</a></p>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h5 class="center">curiousnode</h5>
-
-            <p class="light">A CuriousCat API implementation to send messages using user's numeric ID</p>
-          </div>
-        </div>
-        <p class="center"><a href="https://github.com/reonardoleis/curiousnode">View repository</a></p>
-      </div>
-
-    </div>
-    <br><br>
-  </div>
-
-  
-
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+  getRepositories();
+  </script>
 
   </body>
 </html>
