@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Doom Fire Simulation</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            body{
+                background: black;
+            }
+            canvas{
+                width: 100vw;
+                border: 1px solid black;
+            }
+
+            #canvas-container{
+                position: fixed;
+                bottom: 0;
+                width: 100vw;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="text-align:center;">
+            <h3 style="color: white">Doom: pixelated fire algorithm </h3>
+            <br>
+            <label style="color:white">Fire decay:</label>
+            <br>
+            <input type="number" id="decay_max_input"/>
+            <br><br>
+            <label style="color:white">Fire size(fire size will be decreased by this value<br>37 means no fire.</label>
+            <br>
+            <input type="number" id="fire_max_height"/>
+        </div>
+        <div id="canvas-container"></div>
+        <script src="fire.js"></script>
+    </body>
+</html>
