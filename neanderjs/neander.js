@@ -16,9 +16,11 @@ document.write(`<html>
         <br>
         <label>N. de Instru&ccedil&otildees: </label><label id="instrucoes">0</label>
         <br>
-        <div style="position: fixed; right: 20%; background: white; border: 1px solid black;">
+        <div style="position: fixed; right: 20%; background: white; border: 1px solid black; padding: 10px">
         Menu:<br>
-        <a href="#inst">Instru&ccedil&otildees</a> | <a href="#dados">Dados</a>
+        <a href="#inst">Instru&ccedil&otildees</a>
+        <br>
+        <a href="#dados">Dados</a>
         <br>
         <img src='inst.png'>
     </div>
