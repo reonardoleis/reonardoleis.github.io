@@ -36,7 +36,7 @@ document.write(`<html>
                     </div>
                 </div>
                 <br>
-                <label>(Para exportar como assemble, o que for varíavel deve iniciar com <strong>v</strong>. Exemplo: v100.<br><strong>OBS.: O v deve ser adicionado APENAS PARA EXPORTAÇÃO, caso contrário o código não irá funcionar.</strong>)</label>
+                <label>(Para exportar como assemble, o que for varíavel deve iniciar com <strong>v</strong>. Exemplo: v100. <strong style='color: red'>Aviso: o v deve ser adicionado APENAS PARA EXPORTAÇÃO, caso contrário o código não irá funcionar.</strong>)</label>
                 <br>
                 <div class="row">
                     <div class="col-md-3">
