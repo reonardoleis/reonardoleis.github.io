@@ -16,10 +16,11 @@ document.write(`<html>
         <br>
         <label>N. de Instru&ccedil&otildees: </label><label id="instrucoes">0</label>
         <br>
-        <img src='inst.png'>
         <div style="position: fixed; right: 20%">
-        Pular para:<br>
+        Menu:<br>
         <a href="#inst">Instru&ccedil&otildees</a> | <a href="#dados">Dados</a>
+        <br>
+        <img src='inst.png'>
     </div>
         <br>
         <br>
