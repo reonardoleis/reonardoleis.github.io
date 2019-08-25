@@ -16,7 +16,7 @@ document.write(`<html>
         <br>
         <label>N. de Instru&ccedil&otildees: </label><label id="instrucoes">0</label>
         <br>
-        <div style="position: fixed; right: 20%">
+        <div style="position: fixed; right: 20%; background: white; border: 1px solid black;">
         Menu:<br>
         <a href="#inst">Instru&ccedil&otildees</a> | <a href="#dados">Dados</a>
         <br>
