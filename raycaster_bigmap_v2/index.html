@@ -5,6 +5,10 @@
         <link rel="stylesheet" href="./css/style.css">
     </head>
     <body bgcolor="white">
+        <audio controls autoplay id="song" style="display:none">
+            <source src="./assets/song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
         <canvas id="gameCanvas" width="640" height="480" style="background: black;"></canvas>
         <div id="showHide">
             <canvas id="mapCanvas" width="640" height="480" style="width: 160px; height: 120;"></canvas>
@@ -19,7 +23,10 @@
             CROSSHAIR (0, 1): <input type="number" step=1 id="CROSSHAIR" value=1>
         </div>
         <script>
-            
+            setInterval(() => {
+                document.getElementById('song').play();
+                document.getElementById('song').volume = 0.2;
+            }, 100);
             var url_params = window.location.href.split('?')[1].split('&');
             var cW = parseInt(url_params[0].split('=')[1]);
             var cH = parseInt(url_params[1].split('=')[1]);
