@@ -175,7 +175,7 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
     this.walkDirectionX = 1;
     this.verticalOffset = 0;
     this.walkDirectionY = 1;
-    this.lineSize = (this.currentMap.drawSize/2) - 5;
+    this.lineSize = (this.currentMap.drawSize/2) - 1;
     this.dx = Math.cos(this.rotationAngle);
     this.dy = Math.sin(this.rotationAngle);
     this.center = {x: this.x + (this.currentMap.drawSize / 2), y: this.y + this.currentMap.drawSize / 2}

@@ -1,5 +1,5 @@
-﻿var k = returnMazeArray(maze(11, 15), 11, 15)
-var Map1 = new Map(32, 11, 15, k);
+﻿var k = returnMazeArray(maze(25, 25), 25, 25)
+var Map1 = new Map(20, 25, 25, k);
 
 var Player1 = new Player(Map1.drawSize * 2, Map1.drawSize * 2, 3, 3, Map1);
 
