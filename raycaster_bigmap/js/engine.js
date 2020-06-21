@@ -4,6 +4,7 @@ const mapCanvas  = document.getElementById('mapCanvas');
 var eyeSprite = document.getElementById('eyeSprite');
 
 var wallColor = {r: 255, g: 255, b: 255};
+var floorColor = {r: 220, g: 200, b: 175};
 
 const [ gameContext, mapContext ] = [ gameCanvas.getContext('2d'), mapCanvas.getContext('2d') ];
 
@@ -19,6 +20,9 @@ for (input of document.getElementsByTagName('input')) {
         wallColor.r = document.getElementById('R').value;
         wallColor.g = document.getElementById('G').value;
         wallColor.b = document.getElementById('B').value;
+        floorColor.r = document.getElementById('R2').value;
+        floorColor.g = document.getElementById('G2').value;
+        floorColor.b = document.getElementById('B2').value;
    }
 }
 
@@ -224,7 +228,7 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
 
             let floorGradient = gameContext.createLinearGradient(x, (gameCanvas.height / 2), x, gameCanvas.height);
             //floorGradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
-            floorGradient.addColorStop(0, 'rgba(220, 200, 175, 1)');
+            floorGradient.addColorStop(0, `rgba(${floorColor.r}, ${floorColor.g}, ${floorColor.b}, 1)`);
             gameContext.fillStyle = floorGradient;
 
             gameContext.fillRect(0, (gameCanvas.height / 2) + this.verticalOffset, gameCanvas.width, (gameCanvas.height / 2) - this.verticalOffset);

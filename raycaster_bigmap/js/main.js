@@ -3,6 +3,7 @@ var Map1 = new Map(20, 25, 25, k);
 
 var Player1 = new Player(Map1.drawSize * 2, Map1.drawSize * 2, 3, 3, Map1);
 
+var FPS = 120;
 
 
 function gameLoop() {
@@ -21,7 +22,7 @@ function gameLoop() {
     }
     Player1.draw();
     Player1.move();
-    requestAnimationFrame(gameLoop);
+    setTimeout(() => {gameLoop()}, (1/FPS)*1000);
 }
 
 gameLoop();
