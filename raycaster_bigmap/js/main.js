@@ -22,6 +22,7 @@ function gameLoop() {
     }
     Player1.draw();
     Player1.move();
+    FPS = parseInt(document.getElementById('FPS').value);
     setTimeout(() => {gameLoop()}, (1/FPS)*1000);
 }
 

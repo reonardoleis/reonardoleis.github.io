@@ -179,7 +179,7 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
     this.walkDirectionX = 1;
     this.verticalOffset = 0;
     this.walkDirectionY = 1;
-    this.lineSize = (this.currentMap.drawSize/2) - 1;
+    this.lineSize = (this.currentMap.drawSize/2) - 3;
     this.dx = Math.cos(this.rotationAngle);
     this.dy = Math.sin(this.rotationAngle);
     this.center = {x: this.x + (this.currentMap.drawSize / 2), y: this.y + this.currentMap.drawSize / 2}
@@ -352,7 +352,7 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
         this.dx = Math.cos(this.rotationAngle);
         this.dy = Math.sin(this.rotationAngle);
        
-        this.walking = 0;
+        //this.walking = 0;
         this.center = {x: this.x + this.currentMap.drawSize / 2, y: this.y + this.currentMap.drawSize / 2}
     }
     this.keyListener = window.onkeydown = (e) => {
@@ -368,6 +368,38 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
                 this.walkDirectionX = -1;
                 this.walkDirectionY = -1;
                 this.walking = 1;
+            break;
+
+            case KEYS.CAMERA_UP:
+                this.verticalOffset+= this.walkingSpeed;
+            break;
+
+            case KEYS.CAMERA_DOWN:
+                this.verticalOffset-= this.walkingSpeed;
+            break;
+
+            case KEYS.CAMERA_LEFT:
+                this.rotationAngle = normalizeAngle(this.rotationAngle - this.rotationSpeed);
+            break;
+
+            case KEYS.CAMERA_RIGHT:
+                this.rotationAngle = normalizeAngle(this.rotationAngle + this.rotationSpeed);
+            break;
+        }
+    }
+    this.keyListener = window.onkeyup = (e) => {
+        console.log(e.keyCode);
+        switch(e.keyCode) {
+            case KEYS.UP:
+                this.walkDirectionX = 1;
+                this.walkDirectionY = 1;
+                this.walking = 0;
+            break;
+
+            case KEYS.DOWN:
+                this.walkDirectionX = -1;
+                this.walkDirectionY = -1;
+                this.walking = 0;
             break;
 
             case KEYS.CAMERA_UP:
