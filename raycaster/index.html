@@ -7,6 +7,10 @@
         <canvas id="gameCanvas" width="320" height="240" style="background: black; border: 1px solid black;"></canvas>
         <canvas id="mapCanvas" width="320" height="240" style="width: 160px; height: 120;"></canvas>
         <img src="./assets/eye.png" id="eyeSprite" style="display: none">
+        <br>
+        FOV: <input type="number" step=1 id="FOV" value="60"><br>
+        TRIP MODE (0 - DISABLED, 1 - ENABLED): <input type="number" step="1" id="TRIP_MODE" value="0"><br>
+        WALLS MAX RGB: <input type="number" step=0.1 id="R" value="255"><input type="number" step=0.1 id="G" value="255"><input type="number" step=0.1 id="B" value="255">
         <script src="./js/engine.js"></script>
         <script src="./js/main.js"></script>
     </body>

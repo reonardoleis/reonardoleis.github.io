@@ -3,10 +3,27 @@ const mapCanvas  = document.getElementById('mapCanvas');
 
 var eyeSprite = document.getElementById('eyeSprite');
 
+var wallColor = {r: 255, g: 255, b: 255};
+
 const [ gameContext, mapContext ] = [ gameCanvas.getContext('2d'), mapCanvas.getContext('2d') ];
 
-const FOV               = inRadians(60);
+var FOV               = inRadians(60);
 const NUMBER_OF_RAYS    = mapCanvas.width;
+
+var TRIP_MODE = {enabled: false, stage: 0, direction: 0};
+
+for (input of document.getElementsByTagName('input')) {
+   input.onchange = (e) => {
+        FOV = inRadians(parseFloat(document.getElementById('FOV').value));
+        TRIP_MODE.enabled = document.getElementById('TRIP_MODE').value == '1' ? true : false;
+        wallColor.r = document.getElementById('R').value;
+        wallColor.g = document.getElementById('G').value;
+        wallColor.b = document.getElementById('B').value;
+   }
+}
+
+
+
 
 const KEYS = {
     UP:    87,
@@ -18,6 +35,48 @@ const KEYS = {
 }
 
 const SPRITE_TRANSLATE = [0, 0, eyeSprite, eyeSprite];
+
+
+
+function tripModeAnimator() {
+    if (TRIP_MODE.direction == 0) {
+        if (TRIP_MODE.stage == 0) {
+            wallColor.r--;
+            if(wallColor.r == 0) {
+                TRIP_MODE.stage = 1
+            }
+        } else if (TRIP_MODE.stage == 1) {
+            wallColor.g--;
+            if(wallColor.g == 0) {
+                TRIP_MODE.stage =2
+            }
+        } else {
+            wallColor.b--;
+            if(wallColor.b == 0) {
+                TRIP_MODE.stage = 0
+                TRIP_MODE.direction = 1;
+            }
+        }
+    } else {
+        if (TRIP_MODE.stage == 0) {
+            wallColor.r++;
+            if(wallColor.r == 255) {
+                TRIP_MODE.stage = 1
+            }
+        } else if (TRIP_MODE.stage == 1) {
+            wallColor.g++;
+            if(wallColor.g == 255) {
+                TRIP_MODE.stage =2
+            }
+        } else {
+            wallColor.b++;
+            if(wallColor.b == 255) {
+                TRIP_MODE.stage = 0
+                TRIP_MODE.direction = 0;
+            }
+        }
+    }
+}
 
 function normalizeAngle(angle) {
     angle = angle % (2 * Math.PI);
@@ -139,9 +198,9 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
             //draw wall
             let colorDecrement = (100 * d) / NUMBER_OF_RAYS;
 
-                gameContext.fillStyle =  `rgba(${(1 - (colorDecrement/100)) * 255}, 
-                                           ${(1 - (colorDecrement/100)) * 255}, 
-                                           ${(1 - (colorDecrement/100)) * 255}, 1)`;
+                gameContext.fillStyle =  `rgba(${(1 - (colorDecrement/100)) * wallColor.r}, 
+                                           ${(1 - (colorDecrement/100)) * wallColor.g}, 
+                                           ${(1 - (colorDecrement/100)) * wallColor.b}, 1)`;
 
 
             let projectionDistance = (gameCanvas.width / 2) / Math.tan(FOV / 2);
@@ -162,15 +221,15 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
     }
 
     this.drawFloor = () => {
-        
+
             let floorGradient = gameContext.createLinearGradient(x, (gameCanvas.height / 2), x, gameCanvas.height);
             //floorGradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
             floorGradient.addColorStop(0, 'rgba(220, 200, 175, 1)');
             gameContext.fillStyle = floorGradient;
-       
+
             gameContext.fillRect(0, (gameCanvas.height / 2) + this.verticalOffset, gameCanvas.width, (gameCanvas.height / 2) - this.verticalOffset);
-        
-        
+
+
     }
     this.rayCast = () => {
         mapContext.strokeStyle = 'pink'

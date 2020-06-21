@@ -13,6 +13,12 @@ function gameLoop() {
     gameContext.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     mapContext.clearRect(0, 0, mapCanvas.width, mapCanvas.height);
     Map1.draw();
+    if (TRIP_MODE.enabled) {
+        tripModeAnimator();
+        document.getElementById('R').value = wallColor.r;
+        document.getElementById('G').value = wallColor.g;
+        document.getElementById('B').value = wallColor.b;
+    }
     Player1.draw();
     Player1.move();
     requestAnimationFrame(gameLoop);
