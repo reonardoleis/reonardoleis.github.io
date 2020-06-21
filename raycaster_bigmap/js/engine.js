@@ -5,6 +5,7 @@ var eyeSprite = document.getElementById('eyeSprite');
 
 var wallColor = {r: 255, g: 255, b: 255};
 var floorColor = {r: 220, g: 200, b: 175};
+var roofColor = {r: 0, g: 0, b: 220};
 
 const [ gameContext, mapContext ] = [ gameCanvas.getContext('2d'), mapCanvas.getContext('2d') ];
 
@@ -23,6 +24,10 @@ for (input of document.getElementsByTagName('input')) {
         floorColor.r = document.getElementById('R2').value;
         floorColor.g = document.getElementById('G2').value;
         floorColor.b = document.getElementById('B2').value;
+        roofColor.r = document.getElementById('R3').value;
+        roofColor.g = document.getElementById('G3').value;
+        roofColor.b = document.getElementById('B3').value;
+        gameCanvas.style.background = `rgba(${roofColor.r}, ${roofColor.g}, ${roofColor.b}, 1)`;
    }
 }
 
@@ -193,6 +198,7 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
         mapContext.lineTo(this.center.x + (this.dx * this.lineSize), this.center.y + (this.dy * this.lineSize));
         mapContext.stroke();
         this.drawFloor();
+        //this.drawRoof();
         this.rayCast();
 
     }
@@ -226,10 +232,7 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
 
     this.drawFloor = () => {
 
-            let floorGradient = gameContext.createLinearGradient(x, (gameCanvas.height / 2), x, gameCanvas.height);
-            //floorGradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
-            floorGradient.addColorStop(0, `rgba(${floorColor.r}, ${floorColor.g}, ${floorColor.b}, 1)`);
-            gameContext.fillStyle = floorGradient;
+        gameContext.fillStyle = `rgba(${floorColor.r}, ${floorColor.g}, ${floorColor.b}, 1)`;
 
             gameContext.fillRect(0, (gameCanvas.height / 2) + this.verticalOffset, gameCanvas.width, (gameCanvas.height / 2) - this.verticalOffset);
 
@@ -242,7 +245,7 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
         let v = 0;
         let spritesToRender = [];
         for (let i = 0; i < NUMBER_OF_RAYS; i++) {
-            
+
             mapContext.moveTo(this.center.x, this.center.y);
             let testX, testY;
             for (let j = 0; j < mapCanvas.width; j++) {
