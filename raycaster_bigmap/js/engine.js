@@ -9,6 +9,8 @@ var roofColor = {r: 0, g: 0, b: 220};
 
 const [ gameContext, mapContext ] = [ gameCanvas.getContext('2d'), mapCanvas.getContext('2d') ];
 
+document.getElementById('gameCanvas').style.background =  `rgba(${roofColor.r}, ${roofColor.g}, ${roofColor.b}, 1)`;
+
 var FOV               = inRadians(60);
 const NUMBER_OF_RAYS    = mapCanvas.width;
 
