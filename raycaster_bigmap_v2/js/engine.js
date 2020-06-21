@@ -2,10 +2,10 @@
 const mapCanvas  = document.getElementById('mapCanvas');
 
 var eyeSprite = document.getElementById('eyeSprite');
-
+var maxEnemies = 15;
 var wallColor = {r: 255, g: 255, b: 255};
-var floorColor = {r: 220, g: 200, b: 175};
-var roofColor = {r: 0, g: 0, b: 220};
+var floorColor = {r: 225, g: 225, b: 10};
+var roofColor = {r: 255, g: 0, b: 255};
 
 const [ gameContext, mapContext ] = [ gameCanvas.getContext('2d'), mapCanvas.getContext('2d') ];
 
@@ -14,7 +14,7 @@ document.getElementById('gameCanvas').style.background =  `rgba(${roofColor.r}, 
 var FOV               = inRadians(60);
 const NUMBER_OF_RAYS    = mapCanvas.width;
 
-var TRIP_MODE = {enabled: false, stage: 0, direction: 0};
+var TRIP_MODE = {enabled: 1, stage: 0, direction: 0};
 
 for (input of document.getElementsByTagName('input')) {
    input.onchange = (e) => {
@@ -42,11 +42,30 @@ const KEYS = {
     CAMERA_LEFT:  37,
     CAMERA_RIGHT: 39,
     CAMERA_UP: 38,
-    CAMERA_DOWN: 40
+    CAMERA_DOWN: 40,
+    ATTACK: 32
 }
 
-const SPRITE_TRANSLATE = [0, 0, eyeSprite, eyeSprite];
+var SPRITE_TRANSLATE = [0, 0];
 
+
+function generateEnemies(numberOf, w, h, map) {
+    for (let i = 0; i < numberOf; i++) {
+        SPRITE_TRANSLATE[i + 2] = eyeSprite;
+    }
+    for (let i = 0; i < numberOf; i++) {
+        console.log('generating...');
+        let randX = Math.floor(Math.random() * ((w-1) - 0) + 0);
+        let randY = Math.floor(Math.random() * ((h-1) - 0) + 0);
+        while (map.matrix[randX][randY] != 0) {
+            console.log('retry...');
+            randX = Math.floor(Math.random() * ((w-1) - 0) + 0);
+            randY = Math.floor(Math.random() * ((h-1) - 0) + 0); 
+        }
+        map.matrix[randX][randY] = 3 + i;
+        
+    }
+}
 
 
 function tripModeAnimator() {
@@ -175,17 +194,58 @@ function returnMazeArray(m, w, h) {
     return output_matrix;
 }
 
+
+var enemyMovementOffset = [[1,-1], [-1, 1], [0, 1], [1, 0], [1, 1], [0, -1], [-1, 0], [-1, -1]];
+var pimba = 100;
+function moveEnemies(map) {
+    let new_pos = [];
+    for (let i = 0; i < map.matrix.length; i++) {
+        for (let j = 0; j < map.matrix[0].length; j++) {
+            if (map.matrix[i][j] > 2) {
+                let alreadyMoved = false;
+                for (let a = 0; a < new_pos.length; a++) {
+                    if (new_pos[a][0] == i && new_pos[a][1] == j) {
+                        //console.log("ja movi..")
+                        alreadyMoved = true;
+                    }
+                }
+                if (!alreadyMoved) {
+                    let oldType = map.matrix[i][j];
+                    let randomX = Math.round(Math.random()) == 1 ? -1 : 1;
+                    let randomY = Math.round(Math.random()) == 1 ? -1 : 1;
+                    randomX = randomX * Math.round(Math.random());
+                    randomY = randomY * Math.round(Math.random());
+                    while(map.matrix[i + randomX][j + randomY] != 0) {
+                        randomX = Math.round(Math.random()) == 1 ? -1 : 1;
+                        randomY = Math.round(Math.random()) == 1 ? -1 : 1;
+                        randomX = randomX * Math.round(Math.random());
+                        randomY = randomY * Math.round(Math.random());
+                    }
+                    map.matrix[i + randomX][j + randomY] = oldType;
+                    map.matrix[i][j] = 0;
+                    new_pos.push([i + randomX, j + randomY]);
+                }
+            }
+        }
+    }
+    //console.log("PIMBA? " + pimba);
+    pimba+=100;
+}
+
 function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
     this.x = x;
     this.y = y;
     this.walking = 0;
+    this.hp = 100;
     this.walkingSpeed = walkingSpeed;
     this.rotationSpeed = rotationSpeed * (Math.PI / 180);
     this.rotationAngle = Math.PI / 2;
+    this.attacking = false;
     this.currentMap = currentMap;
     this.walkDirectionX = 1;
     this.verticalOffset = 0;
     this.walkDirectionY = 1;
+    this.canHit = false;
     this.lineSize = (this.currentMap.drawSize/2) - 3;
     this.dx = Math.cos(this.rotationAngle);
     this.dy = Math.sin(this.rotationAngle);
@@ -306,7 +366,8 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
                 this.fake3D(sprite.x, sprite.d, sprite.type);
             })
 
-        } catch(e) {console.log(e)}
+        } catch(e) {//console.log(e)
+        }
     }
 
     this.isColliding = () => {
@@ -327,31 +388,52 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
         let matrixX4 = Math.floor(xRatio4);
         let matrixY4 = Math.floor(yRatio4);
         if (this.currentMap.matrix[matrixY1][matrixX1] != 0) {
-            return 'DOWN';
+            return {direction: 'DOWN', type: this.currentMap.matrix[matrixY1][matrixX1], x: matrixY1, y: matrixX1};
         } else if(this.currentMap.matrix[matrixY2][matrixX2] != 0) { 
-            return 'UP';
+            return {direction: 'UP', type: this.currentMap.matrix[matrixY2][matrixX2], x: matrixY2, y: matrixX2};
         } else if(this.currentMap.matrix[matrixY3][matrixX3] != 0){
-            return 'LEFT';
+            return {direction: 'LEFT', type: this.currentMap.matrix[matrixY3][matrixX3], x: matrixY3, y: matrixX3};
         } else if(this.currentMap.matrix[matrixY4][matrixX4] != 0) {
-            return 'RIGHT';
+            return {direction: 'RIGHT', type: this.currentMap.matrix[matrixY4][matrixX4], x: matrixY4, y: matrixX4};
         } else {
-            return false;
+            return {direction: false};
         }
+
+        
     }
 
     this.move = () => {
         let collisionStatus = this.isColliding();
-        if(collisionStatus == false) {
+        if(collisionStatus.direction == false) {
             this.y += this.walking * (this.walkDirectionX) * (this.walkingSpeed * this.dy);
             this.x += this.walking * (this.walkDirectionY) * (this.walkingSpeed * this.dx);
-        } else if (collisionStatus == 'UP') {
+        } else if (collisionStatus.direction == 'UP') {
             this.y+= 0.1;
-        } else if (collisionStatus == 'DOWN') {
+        } else if (collisionStatus.direction == 'DOWN') {
             this.y-= 0.1;
-        } else if (collisionStatus == 'LEFT') {
+        } else if (collisionStatus.direction == 'LEFT') {
             this.x+= 0.1;
         } else {
             this.x-= 0.1;
+        }
+
+        if (collisionStatus.direction != false) {
+            if (collisionStatus.type > 1) {
+                
+                    //console.log("TOMEILHE DO INIMIGO PAPAI UIA AIAI..");
+                    this.canHit = true;
+                    if (this.attacking) {
+                        console.log("estaria a bater...");
+                        this.currentMap.matrix[collisionStatus.x][collisionStatus.y] = 0;
+                        FOV = inRadians(inDegrees(FOV) + 10);
+                        maxEnemies--;
+                        //generateEnemies(1, this.currentMap.matrix.length, this.currentMap.matrix[0].width, this.currentMap);
+                    }
+                    this.hp -= 1;
+                
+            } else {
+                this.canHit = false;
+            }
         }
         
         this.dx = Math.cos(this.rotationAngle);
@@ -361,8 +443,11 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
         this.center = {x: this.x + this.currentMap.drawSize / 2, y: this.y + this.currentMap.drawSize / 2}
     }
     this.keyListener = window.onkeydown = (e) => {
-        console.log(e.keyCode);
+  
         switch(e.keyCode) {
+            case KEYS.ATTACK: 
+                this.attacking = true;
+            break;
             case KEYS.UP:
                 this.walkDirectionX = 1;
                 this.walkDirectionY = 1;
@@ -393,8 +478,11 @@ function Player (x, y, walkingSpeed, rotationSpeed, currentMap) {
         }
     }
     this.keyListener = window.onkeyup = (e) => {
-        console.log(e.keyCode);
+        
         switch(e.keyCode) {
+            case KEYS.ATTACK: 
+                this.attacking = false;
+            break;
             case KEYS.UP:
                 this.walkDirectionX = 1;
                 this.walkDirectionY = 1;
@@ -464,7 +552,12 @@ function Map (tile_size, row_count, column_count, matrix) {
         for (let x = 0; x < this.column_count; x++) {
             for (let y = 0; y < this.row_count; y++) {
                 if (this.matrix[y][x] > 0) {
+                    mapContext.fillStyle = 'orange';
                     mapContext.fillRect(x * this.drawSize, y * this.drawSize, this.drawSize, this.drawSize);
+                    if (this.matrix[y][x] >= 2) {
+                        mapContext.fillStyle = 'green';
+                        mapContext.fillRect(x * this.drawSize, y * this.drawSize, this.drawSize, this.drawSize);
+                    }
                 }
             }
         }
