@@ -5,6 +5,7 @@ var Player1 = new Player(Map1.drawSize * 2, Map1.drawSize * 2, 3, 2, Map1);
 
 var FPS = 120;
 
+var PlayerSpeedMult = 3;
 
 function gameLoop() {
     mapContext.beginPath();
@@ -22,7 +23,7 @@ function gameLoop() {
     }
     Player1.draw();
     Player1.move();
-    Player1.walkingSpeed = (60 / FPS) * 3;
+    Player1.walkingSpeed = (60 / FPS) * PlayerSpeedMult;
     //drawCrossHair (informative only)
     if (document.getElementById('CROSSHAIR').value == '1') {
         gameContext.fillStyle = '#00FF00';
