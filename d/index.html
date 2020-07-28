@@ -11,15 +11,26 @@
             }
         </script>
         <style>
+           *, *:before, *:after {
+      -moz-box-sizing: border-box !important;
+      -webkit-box-sizing: border-box!important;
+      box-sizing: border-box !important;
+     }
           body {
             overflow-x: hidden;
           }
            .bg-navbar {
-               background: #54d267
+            background: rgb(84,210,103);
+background: linear-gradient(180deg, rgba(84,210,103,1) 0%, rgba(77,191,95,1) 100%, rgba(0,212,255,1) 100%);
            }
            .navbar {
              font-weight: bolder;
              font-size: 120%;
+             position: fixed;
+             width: 100%;
+             top: 0;
+             left: 0;
+             z-index: 99;
            }
 
            .navbar-shadow {
@@ -77,6 +88,13 @@
              background-repeat: no-repeat;
              background-attachment: fixed;
            }
+           .home-content-3 {
+             background: url('https://onlyvectorbackgrounds.com/wp-content/uploads/2019/01/Simple-Vector-Geometric-Background-Green.jpg');
+             min-width: 100vw;
+             background-size: cover;
+             background-repeat: no-repeat;
+             background-attachment: fixed;
+           }
            .home-content-2 {
             background: url('https://onlyvectorbackgrounds.com/wp-content/uploads/2018/10/Abstract-Geometric-Background-Orange.jpg');
              min-width: 100vw;
@@ -98,6 +116,108 @@
              font-weight: bolder;
              text-shadow: 0px 3px 6px rgba(150, 150, 150, 1);
            }
+           .card-container {
+             font-size: 100%;
+             color: white;
+             font-weight: bolder;
+             text-shadow: 0px 3px 6px rgba(150, 150, 150, 1);
+             background: #54d267;
+            
+             min-width: fit-content;
+             margin: 0 auto;
+             text-align: center;
+           }
+
+
+           .hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  background: #42b078;
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  padding: 50px 20px;
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  max-width: none;
+  width: calc(100% + 20px);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-10px,0,0);
+  transform: translate3d(-10px,0,0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.hovereffect:hover img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  overflow: hidden;
+  padding: 0.5em 0;
+  background-color: transparent;
+}
+
+.hovereffect h2:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  content: '';
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  -webkit-transform: translate3d(-100%,0,0);
+  transform: translate3d(-100%,0,0);
+}
+
+.hovereffect:hover h2:after {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect a, .hovereffect p {
+  color: #FFF;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(100%,0,0);
+  transform: translate3d(100%,0,0);
+}
+
+.hovereffect:hover a, .hovereffect:hover p {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+          
         </style>
     </head>
     <body>
@@ -149,6 +269,176 @@
             </div>
         </div>
     </div>
+    <div class="container home-content-3"> 
+      <br><br><br>
+      <br>
+      <h1 align=center style="color: black">Donec enim diam vulputate</h1>
+      <hr>
+      <div class="">
+
+            <div class="container" style="background: #54d267; padding: 3vw; padding-bottom: 2vw; border-radius: 15px">
+              <div class="row" style="width: fit-content; margin: 0 auto !important">
+                
+                <div class="col-lg">
+                  <div class="hovereffect">
+                      <img class="img-responsive" src="https://yt3.ggpht.com/a/AATXAJyzyrPJMwSCUxtTlY-MQ9sEqX8XHm8MYq4yr7e6Gw=s900-c-k-c0xffffffff-no-rj-mo" alt="">
+                      <div class="overlay">
+                        <p class="h3" style="padding-left: 15px">
+                            Dolor sit
+                        </p>
+                          <p class="h4" style="padding-left: 15px">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                            </svg> Sit tut 12 ist meta!
+                            <br>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                              <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                            </svg> R$ 13,00
+                            <br>
+                            <br>
+                            <br>
+                            <a class="btn btn-green">Lorem ipsum</a>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg">
+                <div class="hovereffect">
+                    <img class="img-responsive" src="https://images-na.ssl-images-amazon.com/images/I/31B2Nyzd8XL.png" alt="">
+                    <div class="overlay">
+                      <p class="h3" style="padding-left: 15px">
+                          Am litoc
+                      </p>
+                        <p class="h4" style="padding-left: 15px">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                          </svg> Sit tut 121 ist meta!
+                          <br>
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                            <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                          </svg> R$ 6,50
+                          <br>
+                          <br>
+                          <br>
+                          <a class="btn btn-green">Lorem ipsum</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg">
+              <div class="hovereffect">
+                  <img class="img-responsive" src="https://www.magnapizzasgourmet.com.br/image/cache/catalog/produtos/pizzas/69331693-forma-assadeira-pizza-brotinho-25cm-kit-07-pecas-asj3196-2614-3_zoom-1000x1000-500x500.jpg" alt="">
+                      <div class="overlay">
+                        <p class="h3" style="padding-left: 15px">
+                            Aspenium
+                        </p>
+                          <p class="h4" style="padding-left: 15px">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                            </svg> Sit tut 32 ist meta!
+                            <br>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                              <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                            </svg> R$ 10,00
+                            <br>
+                            <br>
+                            <br>
+                            <a class="btn btn-green">Lorem ipsum</a>
+                          </p>
+                      </div>
+              </div>
+          </div>
+
+            </div>
+            <br>
+            <div class="row" style="width: fit-content; margin: 0 auto !important">
+
+              <div class="col-lg">
+                <div class="hovereffect">
+                    <img class="img-responsive" src="https://yt3.ggpht.com/a/AATXAJyzyrPJMwSCUxtTlY-MQ9sEqX8XHm8MYq4yr7e6Gw=s900-c-k-c0xffffffff-no-rj-mo" alt="">
+                    <div class="overlay">
+                      <p class="h3" style="padding-left: 15px">
+                          Dolor sit
+                      </p>
+                        <p class="h4" style="padding-left: 15px">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                          </svg> Sit tut 12 ist meta!
+                          <br>
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                            <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                          </svg> R$ 13,00
+                          <br>
+                          <br>
+                          <br>
+                          <a class="btn btn-green">Lorem ipsum</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg">
+              <div class="hovereffect">
+                  <img class="img-responsive" src="https://images-na.ssl-images-amazon.com/images/I/31B2Nyzd8XL.png" alt="">
+                  <div class="overlay">
+                    <p class="h3" style="padding-left: 15px">
+                        Am litoc
+                    </p>
+                      <p class="h4" style="padding-left: 15px">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                        </svg> Sit tut 121 ist meta!
+                        <br>
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                          <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                        </svg> R$ 6,50
+                        <br>
+                        <br>
+                        <br>
+                        <a class="btn btn-green">Lorem ipsum</a>
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg">
+            <div class="hovereffect">
+                <img class="img-responsive" src="https://www.magnapizzasgourmet.com.br/image/cache/catalog/produtos/pizzas/69331693-forma-assadeira-pizza-brotinho-25cm-kit-07-pecas-asj3196-2614-3_zoom-1000x1000-500x500.jpg" alt="">
+                    <div class="overlay">
+                      <p class="h3" style="padding-left: 15px">
+                          Aspenium
+                      </p>
+                        <p class="h4" style="padding-left: 15px">
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                          </svg> Sit tut 32 ist meta!
+                          <br>
+                          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15 4H1v8h14V4zM1 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H1z"/>
+                            <path d="M13 4a2 2 0 0 0 2 2V4h-2zM3 4a2 2 0 0 1-2 2V4h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 12a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                          </svg> R$ 10,00
+                          <br>
+                          <br>
+                          <br>
+                          <a class="btn btn-green">Lorem ipsum</a>
+                        </p>
+                    </div>
+            </div>
+        </div>
+        
+          <div style="width: 100%">
+            <br>
+            <hr>
+            <a class="navbar-btn nav-link btn-orange" style="font-size: 200%; box-shadow: none !important; width: 100%">Ipsum sit dolor</a>
+          </div>
+          </div>
+          </div>
+          <br><br>
+      </div>
+  </div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -159,6 +449,17 @@
         <script>
         VANTA.WAVES({
           el: ".home-content-1",
+          mouseControls: true,
+          touchControls: true,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0x46933
+          
+        })
+        VANTA.WAVES({
+          el: ".home-content-3",
           mouseControls: true,
           touchControls: true,
           minHeight: 200.00,
