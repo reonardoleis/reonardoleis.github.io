@@ -110,3 +110,12 @@ function gera() {
     let texto = ednaldoIpsum(ednaldos, parseInt(frases));
     document.getElementById('saida').innerText = texto;
 }
+
+
+var angulo = 0;
+function giraImage() {
+    document.getElementsByTagName('img')[0].style.transform = `rotate(${angulo}deg)`;;
+    angulo++;
+    setTimeout(() => {giraImage()}, 100);
+}
+giraImage();
