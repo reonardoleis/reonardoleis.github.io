@@ -1,2 +1,2 @@
 test1 file
-updated
+updated twice
