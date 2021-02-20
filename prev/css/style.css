@@ -98,6 +98,15 @@
   .custom-font-size-subtitle-desktop {
     font-size: 2rem !important;
   }
+}
+
+@media(orientation: portrait) {
+  .mobile-image-separator {
+    min-height: 15vh;
+  }
+}
+
+@media only screen and (min-width: 990px) {
   .form-image-desktop {
     position: absolute;
     bottom: 0;
@@ -105,8 +114,8 @@
   }
 }
 
-@media(orientation: portrait) {
-  .mobile-image-separator {
-    min-height: 15vh;
+@media only screen and (max-width: 990px) {
+  .image-separator-small-screen {
+    margin: 0 auto;
   }
 }
