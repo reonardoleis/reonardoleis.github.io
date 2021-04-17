@@ -1,0 +1,244 @@
+* {
+  font-family: 'Poppins';
+}
+
+.bg-blue-light {
+  background-color: #3F87F5;
+}
+
+.bg-blue-dark {
+  background-color: #0652DD;
+}
+
+
+
+.btn-darkblue {
+  background-color: #0652DD;
+  color: white;
+}
+
+.btn-darkblue:hover {
+  color: lightgrey;
+}
+
+.bg-blue-lighter {
+  background-color: rgba(63, 135, 245, 0.2);
+}
+
+.bg-white-real {
+  background-color: #FFFFFF;
+}
+
+.btn-yellow {
+  background-color: #FBDD29;
+}
+
+.border-blue {
+  border: 2px solid #3F87F5 !important;
+  border-radius: 6px !important;
+}
+
+.blue-separator {
+  border-left: 3px solid #0652DD !important;
+}
+
+.text-blue-dark {
+  color: #0652DD;
+}
+
+.bg-purple-dark {
+  background-color: #6262FF;
+}
+
+.bg-lightyellow {
+  background-color:rgba(251, 221, 41, 0.6);
+}
+
+.border-purple-dark {
+  border: 2px solid #6262FF;
+  border-radius: 6px !important;
+}
+
+.no-border-radius {
+  border-radius: 0 0 0 0 !important;
+}
+
+.text-blue-darker {
+  color: #010549;
+}
+
+.text-grey-dark {
+  color: #575757;
+}
+
+.bg-grey-light {
+  background-color: #F1F1F1;
+}
+
+.letter-spacing-1 {
+  letter-spacing: 2px;
+}
+
+.btn-selector-inactive {
+  background-color: rgba(0,0,0,0);
+  color: #010549;
+}
+
+.btn-selector-active {
+  background-color: #3F87F5 !important;
+  color: white !important;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 576px) {
+  .h-100-handler {
+    height: auto !important;
+  }
+  .pl-handler {
+    padding-left: 0 !important;
+  }
+  .custom-border-radius-top {
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+    border-top-right-radius: 0px !important;
+  }
+
+}
+
+@media only screen and (max-width: 991px) {
+  .text-width-handler {
+    width: 100% !important;
+  }
+  .second-section-waves {
+    display: none !important;
+  }
+  .w-50-handler {
+    width: 95vw !important;
+  }
+}
+
+.large-numbering {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.some-heading {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+
+
+.card {
+  overflow: hidden !important;
+}
+
+.my-overlay {
+  position: fixed; /* Stay in place */
+  z-index: 10 ; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.my-modal {
+  position: fixed; /* Stay in place */
+  z-index: 10 ; /* Sit on top */
+  top: 50%;
+  left: 50%;
+  max-width: 95vw;
+  
+  transform: translate(-50%, -50%);
+}
+
+/* Modal Content/Box */
+.my-modal-content {
+  background-color: #fefefe;
+  z-index: 11 !important;
+  margin: 20% auto; /* 15% from the top and centered */
+  padding: 20px;
+  overflow-y: scroll;
+  max-height: 95vh;
+/* Could be more or less, depending on screen size */
+}
+
+.border-radius-primary {
+  border-radius: 8px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.first-section-waves {
+  background-image: url('./assets/wave1.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.second-section {
+  background: linear-gradient(to left, #0652DD, #3F87F5);
+  position: relative;
+  height: 550px;
+}
+
+.second-section-waves {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.second-section-video {
+  transform: translate(0%, -50%);
+}
+
+.centered-image {
+  position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.options-handler:hover {
+  transition: all 0.25s ease;
+  background-color: #0652DD;
+}
+
+.options-handler:hover img {
+  filter: invert(100%) sepia(96%) saturate(2%) hue-rotate(151deg) brightness(112%) contrast(101%);
+}
+
+.options-handler-special:hover {
+  transition: all 0.25s ease;
+  background-color: #00C595;
+}
+
+.text-green-dark {
+  color: #006950;
+}
+
+.options-handler-special:hover img {
+  filter: brightness(-100%) invert(100%);
+}
+
+
+.table-fixed-head          { overflow-y: auto; max-height: 500px; }
+.table-fixed-head thead th { position: sticky; top: 0; z-index: 1; background-color: white;}
+.table-fixed-head tbody th { position: sticky; left: 0; }
