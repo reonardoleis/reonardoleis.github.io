@@ -225,6 +225,10 @@
   filter: invert(100%) sepia(96%) saturate(2%) hue-rotate(151deg) brightness(112%) contrast(101%);
 }
 
+.cursor-pointer-helper {
+  cursor: pointer;
+}
+
 .options-handler-special:hover {
   transition: all 0.25s ease;
   background-color: #00C595;
@@ -236,6 +240,21 @@
 
 .options-handler-special:hover img {
   filter: brightness(-100%) invert(100%);
+}
+
+/* always present */
+.collapsed {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0px;
+  transition: visibility 0.5s ease, opacity 0.2s ease, max-height 1s linear;
+}
+
+.uncollapsed {
+  opacity: 1;
+  visibility: visible;
+  max-height: fit-content;
+  transition: visibility 0.5s ease, opacity 0.2s ease, max-height 1s linear;
 }
 
 

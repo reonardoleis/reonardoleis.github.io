@@ -54,19 +54,22 @@
                 <div class="container row mt-5 mx-auto">
                     <div class="col-lg-3 mb-3">
                         <card-planos icon="assets/stacked1.svg" recommended="false" title="Essencial"
-                            :price=prices[currentPriceTable][0] calculations_number="10" users="3"></card-planos>
+                            :price=prices[currentPriceTable][0] calculations_number="10" users="3"
+                            v-on:open_faq="openFaq()"></card-planos>
                     </div>
                     <div class="col-lg-3 mb-3">
                         <card-planos icon="assets/stacked2.svg" recommended="true" title="Profissional"
-                            :price=prices[currentPriceTable][1] calculations_number="25" users="5"></card-planos>
+                            :price=prices[currentPriceTable][1] calculations_number="25" users="5"
+                            v-on:open_faq="openFaq()"></card-planos>
                     </div>
                     <div class="col-lg-3 mb-3">
                         <card-planos icon="assets/stacked3.svg" recommended="false" title="Especialista"
-                            :price=prices[currentPriceTable][2] calculations_number="50" users="10"></card-planos>
+                            :price=prices[currentPriceTable][2] calculations_number="50" users="10"
+                            v-on:open_faq="openFaq()"></card-planos>
                     </div>
                     <div class="col-lg-3 mb-3">
                         <card-maisinfo title="Precisa de um plano maior?"
-                            description="O CJ tem um plano do tamanho da sua necessidade" users="10"></card-maisinfo>
+                            description="O CJ tem um plano do tamanho da sua necessidade"></card-maisinfo>
                     </div>
                 </div>
                 <div v-on:click="modalStatus = !modalStatus" class="mt-3">
@@ -102,42 +105,48 @@
                     <div class="container" v-if="index < FAQLimit">
                         <hr class="bg-grey-light mb-5">
                         <div class="row bg-grey-light mx-auto text-blue-darker">
-                            <span class="h3" v-on:click="FAQInst[index].status = !FAQInst[index].status" style="cursor: pointer; user-select: none;">
-                                <p> 
+                            <span class="h3" v-on:click="FAQInst[index].status = !FAQInst[index].status"
+                                style="cursor: pointer; user-select: none;" :id="'faq-' + index">
+                                <p>
                                     <i class="fas fa-plus text-blue-dark" v-if="!FAQInst[index].status"></i>
-                                <i class="fas fa-minus text-blue-dark" v-if="FAQInst[index].status"></i> {{FAQInst[index].question}}</p>
+                                    <i class="fas fa-minus text-blue-dark" v-if="FAQInst[index].status"></i>
+                                    {{FAQInst[index].question}}
+                                </p>
                             </span>
-                            
-                            <div class="h5 mt-1  text-dark" v-if="FAQInst[index].status">
+
+                            <div class="h5 mt-1 text-dark collapsed" v-bind:class="{'uncollapsed': q.status}">
                                 <span v-for="paragraph of FAQInst[index].answer.split('\n')">
                                     {{paragraph}}
                                     <br>
                                 </span>
-                                <div class="embed-responsive embed-responsive-16by9 mx-auto mt-5" v-if="FAQInst[index].video && FAQInst[index].status">
+                                <div class="embed-responsive embed-responsive-16by9 mx-auto mt-5"
+                                    v-if="FAQInst[index].video && FAQInst[index].status">
                                     <iframe :src=FAQInst[index].video class="embed-responsive-item"
                                         title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>        
+                                        allowfullscreen></iframe>
                                 </div>
                                 <div class="container text-center">
-                                    <a :href=FAQInst[index].button.link v-if="FAQInst[index].status && FAQInst[index].button" class="btn bg-blue-dark text-white mt-2 font-weight-bold px-4 py-3
+                                    <a :href=FAQInst[index].button.link
+                                        v-if="FAQInst[index].status && FAQInst[index].button" class="btn bg-blue-dark text-white mt-2 font-weight-bold px-4 py-3
                                 mx-auto text-center">
-                                    {{FAQInst[index].button.text}}
-                                </a>
+                                        {{FAQInst[index].button.text}}
+                                    </a>
                                 </div>
                             </div>
 
-                            
+
 
                         </div>
                         <hr class="bg-grey-light" v-if="index == FAQInst.length - 1">
                     </div>
-                    
+
                 </div>
-            
+
                 <div v-on:click="FAQLimit = FAQLimit == 6 ? FAQInst.length : 6" class="mt-3">
                     <p class="text-center h5 text-blue-darker" style="cursor: pointer">
-                        <u>{{FAQLimit <= 6 ? 'Carregar mais perguntas frequentes ↓' : 'Carregar menos perguntas frequentes ↑'}}</u>
+                        <u>{{FAQLimit <= 6 ? 'Carregar mais perguntas frequentes ↓'
+                                : 'Carregar menos perguntas frequentes ↑' }}</u>
                     </p>
                 </div>
             </section>
@@ -152,38 +161,50 @@
                         <br>
                         <span class="text-blue-dark">muitas possibilidades!</span>
                     </p>
-                    <img src="assets/animated-gif.gif" class="img img-fluid mx-auto  d-none d-lg-block d-xg-block" width="250">
+                    <img src="assets/animated-gif.gif" class="img img-fluid mx-auto  d-none d-lg-block d-xg-block"
+                        width="250">
                 </div>
                 <div class="col-lg-6">
                     <div class="blue-separator px-5">
-                        <p class="h4 text-blue-darker font-weight-bold"><img src="assets/calendar.svg" class="mr-3">  Planejamento Previdenciário</p>
-                        <p class="h6 mt-3">“O Cálculo mais falado do Ano” do previdenciário! Simule diversos cenários e apresente aos seus clientes um relatório fácil de entender. Receba no ato, sem esperar resultado de processo!</p>
+                        <p class="h4 text-blue-darker font-weight-bold"><img src="assets/calendar.svg" class="mr-3">
+                            Planejamento Previdenciário</p>
+                        <p class="h6 mt-3">“O Cálculo mais falado do Ano” do previdenciário! Simule diversos cenários e
+                            apresente aos seus clientes um relatório fácil de entender. Receba no ato, sem esperar
+                            resultado de processo!</p>
                     </div>
                     <div class="blue-separator px-5 mt-5">
-                        <p class="h4 text-blue-darker font-weight-bold"><img src="assets/timelapse.svg"  class="mr-3">  Revisão da Vida Toda</p>
-                        <p class="h6 mt-3">Calcule a Revisão da Vida Toda de forma fácil e precisa. Faça também cálculos de outras revisões de direito desde 1978, como: ORTN, Buraco Negro, Buraco Verde, IRSM, Teto, Art. 29 e Períodos Concomitantes.</p>
+                        <p class="h4 text-blue-darker font-weight-bold"><img src="assets/timelapse.svg" class="mr-3">
+                            Revisão da Vida Toda</p>
+                        <p class="h6 mt-3">Calcule a Revisão da Vida Toda de forma fácil e precisa. Faça também cálculos
+                            de outras revisões de direito desde 1978, como: ORTN, Buraco Negro, Buraco Verde, IRSM,
+                            Teto, Art. 29 e Períodos Concomitantes.</p>
                     </div>
                     <div class="blue-separator px-5 mt-5">
-                        <p class="h4 text-blue-darker font-weight-bold"><img src="assets/smartphone.svg"  class="mr-3">  Leve o CJ com você</p>
-                        <p class="h6 mt-3">Use o CJ em qualquer lugar! O programa funciona em computadores e smpartphones e dispensa instalações.</p>
+                        <p class="h4 text-blue-darker font-weight-bold"><img src="assets/smartphone.svg" class="mr-3">
+                            Leve o CJ com você</p>
+                        <p class="h6 mt-3">Use o CJ em qualquer lugar! O programa funciona em computadores e
+                            smpartphones e dispensa instalações.</p>
                     </div>
                 </div>
             </div>
             <div class="container row mt-5 mx-auto">
-                <div v-for="opt in OptCards" class="col-xg-4 col-lg-4 col-md-6 mb-3">
+                <div v-for="opt in OptCards" class="col-xg-4 col-lg-4 col-md-6 mb-3" v-bind:class="{ 'cursor-pointer-helper': opt.link }" v-on:click="() => { if(opt.link) { window.open(opt.link, '_blank') } }">
                     <div class="card mb-3 h-100">
                         <div class="row no-gutters h-100">
-                          <div class="col-4 border-right" v-bind:class="{ 'options-handler': !opt.specialColor, 'options-handler-special': opt.specialColor}">
-                            <img :src=opt.icon class="img centered-image">
-                          </div>
-                          <div class="col-8 ">
-                            <div class="card-body">
-                              <h4 class="card-title font-weight-bold" v-bind:class="{ 'text-blue-darker': !opt.specialColor, 'text-green-dark': opt.specialColor }">{{opt.title}}</h5>
-                              <p class="card-text">{{opt.desc}}</p>
+                            <div class="col-4 border-right"
+                                v-bind:class="{ 'options-handler': !opt.specialColor, 'options-handler-special': opt.specialColor}">
+                                <img :src=opt.icon class="img centered-image">
                             </div>
-                          </div>
+                            <div class="col-8 ">
+                                <div class="card-body">
+                                    <h4 class="card-title font-weight-bold"
+                                        v-bind:class="{ 'text-blue-darker': !opt.specialColor, 'text-green-dark': opt.specialColor }">
+                                        {{opt.title}}</h5>
+                                        <p class="card-text">{{opt.desc}}</p>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
             <h1 class="text-center mt-5">FOOTER</h1>
@@ -209,6 +230,14 @@
                     ["990", "1390", "1990"],
                     ["1980", "2780", "3980"]
                 ]
+            },
+            methods: {
+                openFaq() {
+                    this.FAQInst[0].status = true;
+                    $("html, body").animate({
+                        scrollTop: $("#faq-0").offset().top - 50
+                    }, 1000);
+                }
             }
         })
     </script>

@@ -7,4 +7,4 @@ const OptCards = [
   {icon: 'assets/icon6.svg', title: 'Software sempre atualizado', desc: 'Índices e regras sempre atualizadas.  O CJ mantém seus cálculos antigos atualizados.'},
   {icon: 'assets/icon7.svg', title: 'Petições, contratos e muito mais', desc: 'Otimize a fundamentação dos casos com o auxílio de modelos de peças jurídicas.'},
   {icon: 'assets/icon8.svg', title: 'Cursos exclusivos pra assinantes', desc: 'Adquira mais conhecimento para alavancar o seu escritório com os cursos exclusivos do CJ.'},
-  {icon: 'assets/icon10.svg', title: 'Diversifique com Cálculos Cíveis', desc: 'Calcule atualização de débitos civis e revisões de aluguel, FGTS e PASEP de forma fácil com uma única assinatura.', specialColor: true}]
+  {icon: 'assets/icon10.svg', title: 'Diversifique com Cálculos Cíveis', desc: 'Calcule atualização de débitos civis e revisões de aluguel, FGTS e PASEP de forma fácil com uma única assinatura.', specialColor: true, link: 'https://calculojuridico.com.br/calculos-civis/'}]

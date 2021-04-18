@@ -16,7 +16,7 @@ template: `
             <div class="large-numbering h1 font-weight-bolder">
               {{calculations_number}}
             </div>
-            <div class="some-heading text-left pl-0 ml-3 w-75">
+            <div class="some-heading text-left pl-0 ml-3 w-75" v-on:click="$emit('open_faq')">
               <strong>novos</strong> cálculos a<br> cada mês <i class="far fa-question-circle"></i>
             </div>
           </div>
