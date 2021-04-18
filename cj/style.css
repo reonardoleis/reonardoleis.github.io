@@ -150,8 +150,12 @@
   top: 50%;
   left: 50%;
   max-width: 95vw;
-  
   transform: translate(-50%, -50%);
+}
+
+.modal-open {
+  overflow: hidden;
+  max-height: 100vh;
 }
 
 /* Modal Content/Box */
@@ -160,7 +164,7 @@
   z-index: 11 !important;
   margin: 20% auto; /* 15% from the top and centered */
   padding: 20px;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 95vh;
 /* Could be more or less, depending on screen size */
 }
@@ -217,12 +221,13 @@
 }
 
 .options-handler:hover {
-  transition: all 0.25s ease;
+  transition: all 0.5s ease;
   background-color: #0652DD;
 }
 
 .options-handler:hover img {
-  filter: invert(100%) sepia(96%) saturate(2%) hue-rotate(151deg) brightness(112%) contrast(101%);
+  filter: brightness(-100%) invert(100%);
+  transform: scale(1.5);
 }
 
 .cursor-pointer-helper {
@@ -230,7 +235,7 @@
 }
 
 .options-handler-special:hover {
-  transition: all 0.25s ease;
+  transition: all 0.5s ease;
   background-color: #00C595;
 }
 
@@ -240,6 +245,7 @@
 
 .options-handler-special:hover img {
   filter: brightness(-100%) invert(100%);
+  transform: scale(1.5);
 }
 
 .card-link-helper:hover {
@@ -263,5 +269,5 @@
 
 
 .table-fixed-head          { overflow-y: auto; max-height: 500px; }
-.table-fixed-head thead th { position: sticky; top: 0; z-index: 1; background-color: white;}
+.table-fixed-head thead th { position: sticky; top: 0; z-index: 1; background-color: white; padding: 0 !important; border: none !important}
 .table-fixed-head tbody th { position: sticky; left: 0; }
