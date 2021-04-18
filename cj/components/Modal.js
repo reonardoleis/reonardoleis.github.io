@@ -26,7 +26,7 @@ template: `
               <tr>
                 <th scope="col">
                   <div class="p-3">
-                    <img src="../assets/varstacked1.svg">
+                    <img src="./assets/varstacked1.svg">
                     <br>
                     <label class="h5 font-weight-bold text-blue-darker mt-2 mb-4">Essencial</label>
                     <br>
@@ -35,7 +35,7 @@ template: `
                 </th>
                 <th scope="col">
                   <div class="p-3">
-                    <img src="../assets/varstacked2.svg">
+                    <img src="./assets/varstacked2.svg">
                     <br>
                     <label class="h5 font-weight-bold text-blue-darker mt-2 mb-4">Profissional</label>
                     <br>
@@ -44,7 +44,7 @@ template: `
                 </th>
                 <th scope="col">
                   <div class="p-3">
-                    <img src="../assets/varstacked3.svg">
+                    <img src="./assets/varstacked3.svg">
                     <br>
                     <label class="h5 font-weight-bold text-blue-darker mt-2 mb-4">Especialista</label>
                     <br>
