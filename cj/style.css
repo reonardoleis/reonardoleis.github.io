@@ -242,6 +242,10 @@
   filter: brightness(-100%) invert(100%);
 }
 
+.card-link-helper:hover {
+  text-decoration: underline;
+}
+
 /* always present */
 .collapsed {
   opacity: 0;
