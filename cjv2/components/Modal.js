@@ -252,7 +252,7 @@ template: `
           <table class="table table-bordered border-radius-primary">
             <thead>
               <tr>
-                <th scope="col" class="w-100">
+                <th scope="col">
                   <div class="p-3">
                     <img src="./assets/varstacked1.svg">
                     <br>
