@@ -22,7 +22,7 @@ template: `
         </div>
         <div class="container table-small-handler mt-5">
           <div class="mx-auto text-center mb-3">
-            <div class="row w-100 mx-auto">
+            <div class="row mx-auto">
               <div class="col-4 text-center">
                 <div class="bg-blue-dark rounded-pill" style="width: 15px !important; height: 15px !important;"
                   v-bind:class="{'disabled-circle': active_plan != 0}" v-on:click="$emit('set_plan', '0')"></div>
