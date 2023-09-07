@@ -1,0 +1,52 @@
+﻿<html>
+    <head>
+        <title>Evoludoom</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body bgcolor="white">
+        <audio controls autoplay id="song" style="display:none">
+            <source src="./assets/song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        <canvas id="gameCanvas" width="640" height="480" style="background: black;"></canvas>
+        <div id="showHide">
+            <img src="./assets/eye.png" id="eyeSprite" style="display: none">
+            <canvas id="mapCanvas" width="640" height="480" style="width: 160px; height: 120;"></canvas>
+            <button onclick="fullScreen()">FULLSCREEN</button>
+            <br>
+            FOV: <input type="number" step=1 id="FOV" value="60"><br>
+            TRIP MODE (0 - DISABLED, 1 - ENABLED): <input type="number" step="1" id="TRIP_MODE" value="0"><br>
+            WALLS MAX RGB: <input type="number" step=0.1 id="R" value="255"><input type="number" step=0.1 id="G" value="255"><input type="number" step=0.1 id="B" value="255"><br>
+            FLOOR RGB: <input type="number" step=0.1 id="R2" value="220"><input type="number" step=0.1 id="G2" value="200"><input type="number" step=0.1 id="B2" value="175"><br>
+            ROOF RGB: <input type="number" step=0.1 id="R3" value="0"><input type="number" step=0.1 id="G3" value="0"><input type="number" step=0.1 id="B3" value="220"><br>
+            MAX FPS: <input type="number" step=1 id="FPS" value=60>
+            CROSSHAIR (0, 1): <input type="number" step=1 id="CROSSHAIR" value=1>
+        </div>
+        <script>
+            setInterval(() => {
+                document.getElementById('song').play();
+                document.getElementById('song').volume = 0.05;
+            }, 100);
+            var url_params = window.location.href.split('?')[1].split('&');
+            var cW = parseInt(url_params[0].split('=')[1]);
+            var cH = parseInt(url_params[1].split('=')[1]);
+            document.getElementById('gameCanvas').width = cW;
+            document.getElementById('gameCanvas').height = cH;
+            document.getElementById('mapCanvas').width = cW;
+            document.getElementById('mapCanvas').height = cH;
+        </script>
+        <script src="./js/engine.js"></script>
+        <script src="./js/main.js"></script>
+        <script>
+            
+            function fullScreen() {
+                /*document.getElementById('gameCanvas').style.width = '100vw';
+                document.getElementById('gameCanvas').style.height = '100vh';
+                document.getElementById('showHide').style.display = 'none';*/
+                document.getElementById('gameCanvas').webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); //Chrome
+                document.getElementById('gameCanvas').mozRequestFullScreen(); //Firefox
+            }
+        </script>
+    </body>
+</html>

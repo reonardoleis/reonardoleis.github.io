@@ -1,47 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script src="js/get-repo-cors-everywhere.js"></script>
-      <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-      <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1.0'/>
-      <title>GitHub - Reonardoleis</title>
-      <!-- CSS  -->
-      <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
-      <link href='css/materialize.css' type='text/css' rel='stylesheet' media='screen,projection'/>
-      <link href='css/style.css' type='text/css' rel='stylesheet' media='screen,projection'/>
-   </head>
-   <body>
-      <nav class='light-blue lighten-1' role='navigation'>
-         <div class='nav-wrapper container'>
-            <a id='logo-container' href='#' class='brand-logo'>reonardoleis.github.io</a>
-            <ul class='right hide-on-med-and-down'>
-               <li><a href='#'></a></li>
-            </ul>
-            <ul id='nav-mobile' class='sidenav'>
-               <li><a href='#'></a></li>
-            </ul>
-            <a href='#' data-target='nav-mobile' class='sidenav-trigger'><i class='material-icons'>menu</i></a>
-         </div>
-      </nav>
-      <div class='section no-pad-bot' id='index-banner'>
-         <div class='container'>
-            <br><br>
-            <h1 class='header center orange-text'>Leonardo Reis</h1>
-            <div class='row center'>
-               <h5 class='header col s12 light'>Projects</h5>
-            </div>
-         </div>
-      </div>
-      <div style="text-align: center">
-         <img id="loading" src="img/loading.gif" width="100">
-      </div>
-      <!--  Scripts-->
-      <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
-      <script src='js/materialize.js'></script>
-      <script src='js/init.js'></script>
-      <script type="text/javascript">
-         getRepositories();
-      </script>
-   </body>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo Reis - Software Engineer</title>
+    <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/colors.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        Contact me: &nbsp; &nbsp; &nbsp;
+        <a class="text-white" href="https://www.linkedin.com/in/lrsilva1/">[LinkedIn]</a>
+        &nbsp; &nbsp; &nbsp;
+        <a class="text-white" href="https://github.com/reonardoleis">[GitHub]</a>
+    </nav>
+    <div class="container bg-blue">
+        <h1 class="center-text neon text-white">Hello, I'm Leonardo Reis!</h1>
+        <div class="box w-75 center bg-orange mt-2">
+            <p>
+                I am a Computer Science student at <a href="https://www.ufrgs.br/ufrgs/inicial">UFRGS</a> and a software
+                engineer at <a href="https://jarbas.ai">Jarbas.ai</a>.<br>
+                <br>
+                As an aspiring Computer Scientist, my fields of interest are: <b>distributed systems</b>, <b>software
+                    engineering</b> and <b>programming languages design</b>.<br>
+                <br>
+                Currently, I'm working at Jarbas.ai, an AI-powered creative assistant.
+
+                I have good experience with software engineering, distributed systems, message queues, blockchain, REST
+                APIs, relational and non-relational databases and Google Cloud Platform.
+            </p>
+        </div>
+    </div>
+    <div class="container bg-lightblue">
+        <h1 class="center-text">Technologies I have experience in:</h1>
+        <div class="box w-50 center bg-green mt-2">
+            <p>
+                - Go<br>
+                - JavaScript<br>
+                - Python<br>
+                - C/C++<br>
+                - PostgreSQL<br>
+                - Redis<br>
+                - MongoDB<br>
+                - Web3<br>
+                - Message queues (RabbitMQ, Apache Kafka, Google Cloud Pub/Sub)<br>
+                - Google Cloud Platform (Cloud Run, Cloud SQL, Cloud Storage, Cloud Pub/Sub)
+            </p>
+        </div>
+    </div>
+    <div class="container bg-pink">
+        <h1 class="center-text text-white">Featured projects</h1>
+        <div class="box w-50 center bg-yellow mt-2">
+            <p>
+                - <a href="https://app.jarbas.ai/pt">Jarbas.ai (working here ATM as back end engineer & tech lead)
+                    [link]</a><br>
+                - <a href="https://github.com/reonardoleis/fcg-glcraft">Minecraft clone written in Go with OpenGL
+                    [link]</a><br>
+                - <a href="https://github.com/reonardoleis/guessing-game">Term.ooo clone written in pure PHP
+                    [link]</a><br>
+                - <a href="https://github.com/reonardoleis/ufrgs-compilers-2023-1">Compiler written in C using flex and
+                    yacc [link]</a><br>
+                - <a href="https://github.com/reonardoleis/rinha-backend-2023-q3">Implementation of a highly scalable
+                    API I made for a scalability challenge [link]</a><br>
+                - <a href="https://github.com/reonardoleis/twitter-spotify-bio">Spotify's "playing now" on Twitter bio
+                    automation [link]</a><br>
+                - <a href="https://reonardoleis.github.io/raycaster/">Raycaster renderer with vanilla JS [link]</a><br>
+            </p>
+        </div>
+    </div>
+    <div class="footer" id="footer">
+        reonardoleis@pc ~ $
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
 </html>

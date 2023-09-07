@@ -1,0 +1,31 @@
+.bg-yellow {
+    background-color: #FFFF00;
+}
+
+.bg-lightblue {
+    background-color: #7DF9FF;
+}
+
+.bg-green {
+    background-color: #2FFF2F;
+}
+
+.bg-pink {
+    background-color: #FF00F5;
+}
+
+.bg-blue {
+    background-color: #3300FF;
+}
+
+.bg-orange {
+    background-color: #ee967c;
+}
+
+.text-white {
+    color: white;
+}
+
+.matrix-text-color {
+    color: #00FF00;
+}
