@@ -22,16 +22,12 @@ a {
     -moz-box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
     box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
 
-    transition: padding 1.0s ease;
+    transition: all 1.0s ease;
 }
 
 .box:hover > p {
-    transform: scale(1.05);
-    transition: transform 1.0s ease;
-}
-
-.box:hover {
-    padding: 45px;
+    transform: scale(1.005);
+    transition: all 1.0s ease;
 }
 
 .container {
