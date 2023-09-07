@@ -2,6 +2,7 @@ const footer = document.getElementById("footer");
 let ticks = 0;
 let commands = ["cd dev", "ls", "cd project", "code .", "git add .", "git commit -m 'first commit'", "git push origin master"];
 let currentCommand = 0;
+let isBusy = 0;
 
 setInterval(() => {
     let currentText = footer.innerHTML;
@@ -14,7 +15,8 @@ setInterval(() => {
 
     footer.innerHTML = currentText;
 
-    if (ticks % 5 === 0) {
+    if (ticks % 5 === 0 && !isBusy) {
+        isBusy = true;
         footer.innerHTML = footer.innerText.replace(commands[currentCommand], '');
 
 
@@ -28,13 +30,14 @@ setInterval(() => {
                 footer.innerHTML += commands[currentCommand].charAt(idx);
                 idx++;
             } else {
+                isBusy = false;
                 clearInterval(interval);
             }
         }, 25);
 
 
         ticks = 0;
-    }
+    } 
 
-    ticks++;
-}, 1000);
+    if (!isBusy) ticks++;
+}, 1500);
