@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <textarea id="area"></textarea>
+    <button onclick="format()">Format</button>
+    <script>
+        function format() {
+            const area = document.getElementById('area');
+            const txt = area.value;
+           
+            const lines = txt.split('\n');
+            console.log(lines)
+            const formatted = lines.filter(line => line.length > 0).map((line, index) => {
+                return {
+                    idx: index + 1,
+                    text: line
+                }
+            });
+            console.log(formatted);
+            const json = JSON.stringify(formatted);
+            area.value = json;
+        }
+    </script>
+</body>
+
+</html>
